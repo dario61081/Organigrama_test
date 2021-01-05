@@ -18,6 +18,7 @@ def sumorg(organigrama, codigo_nodo):
 
 
 if __name__ == '__main__':
+    # creacion del organigrama
     raiz = Area(1, "gerencia", 3)
     raiz.agregar_area_hija(Area(6, "contabilidad", 10))
     factu = raiz.agregar_area_hija(Area(8, "facturacion", 4))
@@ -26,14 +27,16 @@ if __name__ == '__main__':
     factu.agregar_area_hija(Area(9, "Informatica", 4))
     factu.agregar_area_hija(Area(2, "Clientes", 3))
 
+    # instanciacion del organigrama
     z = Organigrama("Ejemplo 1", raiz)
-    # z.imprimir_organigrama()
+    # impresion del organigrama
+    z.imprimir_organigrama()
 
-    nodo = z.get_area(2)
-    if isinstance(nodo, (Area,)):
-        print nodo.nombre
-    else:
-        print "Nodo no encontrado"
+    # nodo = z.get_area(3)
+    # if isinstance(nodo, (Area,)):
+    #     print nodo.nombre
+    # else:
+    #     print "Nodo no encontrado"
 
     # print sumorg(z, 8)
     # print sumorg(z, 1)

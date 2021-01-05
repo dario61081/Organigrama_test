@@ -68,7 +68,7 @@ class Area:
                 return None
 
     def __str__(self):
-        marca = " " * self.jerarquia() * (2) + "+" if self.padre else "+"
+        marca = " " * self.jerarquia() * 2 + "+" if self.padre else " "
         return "{marca} {nombre} ({cantidad}) [{codigo}]".format(marca=marca,
                                                                  nombre=self.nombre,
                                                                  cantidad=self.cantidad,

@@ -3,39 +3,42 @@
   "areas": [
     {
       "codigo": 1,
-      "codigo_padre": 0,
       "nombre": "Gerencia",
-      "cantidad_funcionarios": 3
-    },
-    {
-      "codigo": 6,
-      "codigo_padre": 1,
-      "nombre": "Contabilidad",
-      "cantidad_funcionarios": 10
-    },
-    {
-      "codigo": 8,
-      "codigo_padre": 1,
-      "nombre": "Facturacion",
-      "cantidad_funcionarios": 4
-    },
-    {
-      "codigo": 4,
-      "codigo_padre": 1,
-      "nombre": "Tesoreria",
-      "cantidad_funcionarios": 6
-    },
-    {
-      "codigo": 9,
-      "codigo_padre": 8,
-      "nombre": "Informatica",
-      "cantidad_funcionarios": 4
-    },
-    {
-      "codigo": 2,
-      "codigo_padre": 8,
-      "nombre": "Clientes",
-      "cantidad_funcionarios": 3
+      "cantidad": 3,
+      "areas_hijas": [
+        {
+          "codigo": 6,
+          "nombre": "Contabilidad",
+          "cantidad": 10,
+          "areas_hijas": []
+        },
+        {
+          "codigo": 8,
+          "nombre": "Facturacion",
+          "cantidad": 4,
+          "areas_hijas": [
+            {
+              "codigo": 9,
+              "nombre": "Informatica",
+              "cantidad": 4,
+              "areas_hijas": []
+            },
+            {
+              "codigo": 2,
+              "codigo_padre": 8,
+              "nombre": "Clientes",
+              "cantidad": 3,
+              "areas_hijas": []
+            }
+          ]
+        },
+        {
+          "codigo": 4,
+          "nombre": "Tesoreria",
+          "cantidad": 6,
+          "areas_hijas": []
+        }
+      ]
     }
   ]
 }
