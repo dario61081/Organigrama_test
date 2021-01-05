@@ -19,14 +19,14 @@ class Organigrama:
         :param nombre: nombre del organigrama
         """
         self.titulo = titulo
-        self.area_inicial = area_inicial
+        self.raiz = area_inicial
 
     def imprimir_organigrama(self):
-        print "*** Organigrama {titulo}***".format(titulo=self.titulo)
-        self.area_inicial.imprimir()
+        print "*** Organigrama {titulo} ***".format(titulo=self.titulo)
+        self.raiz.imprimir()
 
     def get_area(self, codigo_area):
-        return
+        return self.raiz.get(codigo_area)
 
 
 

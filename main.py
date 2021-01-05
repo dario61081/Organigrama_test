@@ -27,9 +27,13 @@ if __name__ == '__main__':
     factu.agregar_area_hija(Area(2, "Clientes", 3))
 
     z = Organigrama("Ejemplo 1", raiz)
-    z.imprimir_organigrama()
+    # z.imprimir_organigrama()
 
-
+    nodo = z.get_area(2)
+    if isinstance(nodo, (Area,)):
+        print nodo.nombre
+    else:
+        print "Nodo no encontrado"
 
     # print sumorg(z, 8)
     # print sumorg(z, 1)

@@ -26,8 +26,10 @@ class Area:
         """
         if not isinstance(nueva_area_hija, (Area,)):
             raise Exception("Nodo a insertar no es valido")
+
         nueva_area_hija.padre = self
         self.areas_hijas.append(nueva_area_hija)
+
         return nueva_area_hija
 
     def jerarquia(self):
@@ -45,9 +47,30 @@ class Area:
             for i in self.areas_hijas:
                 i.imprimir()
 
+    def get(self, codigo):
+        """
+        Obtener el area instanciada usando su codigo
+        :param codigo: codigo del area
+        :return: instancia del area
+        """
+
+        if self.codigo == codigo:
+            # self.imprimir()  # depuracion
+            return self
+        else:
+            if self.areas_hijas:
+                for h in self.areas_hijas:
+                    f = h.get(codigo)
+                    if f:
+                        # f.imprimir()  # depuracion
+                        return f
+            else:
+                return None
+
     def __str__(self):
         marca = " " * self.jerarquia() * (2) + "+" if self.padre else "+"
-        return "{marca} {nombre} ({cantidad})".format(marca=marca,
-                                                      nombre=self.nombre,
-                                                      cantidad=self.cantidad
-                                                      )
+        return "{marca} {nombre} ({cantidad}) [{codigo}]".format(marca=marca,
+                                                                 nombre=self.nombre,
+                                                                 cantidad=self.cantidad,
+                                                                 codigo=self.codigo
+                                                                 )
