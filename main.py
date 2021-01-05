@@ -18,10 +18,10 @@ def sumorg(organigrama, codigo_nodo):
 
 
 if __name__ == '__main__':
-    raiz = Area(1, "Gerencia", 3)
-    raiz.agregar_area_hija(Area(6, "Contabilidad", 10))
-    factu = raiz.agregar_area_hija(Area(8, "Facturacion", 4))
-    raiz.agregar_area_hija(Area(4, "Tesoreria", 6))
+    raiz = Area(1, "gerencia", 3)
+    raiz.agregar_area_hija(Area(6, "contabilidad", 10))
+    factu = raiz.agregar_area_hija(Area(8, "facturacion", 4))
+    raiz.agregar_area_hija(Area(4, "tesoreria", 6))
 
     factu.agregar_area_hija(Area(9, "Informatica", 4))
     factu.agregar_area_hija(Area(2, "Clientes", 3))

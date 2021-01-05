@@ -13,7 +13,7 @@ class Area:
         :param cantidad: cantidad de funcionarios
         """
         self.codigo = codigo
-        self.nombre = nombre
+        self.nombre = str(nombre).capitalize()
         self.cantidad = cantidad
         self.areas_hijas = []
         self.padre = None
@@ -46,8 +46,8 @@ class Area:
                 i.imprimir()
 
     def __str__(self):
-        chevron = " " * self.jerarquia() * (2) + "+" if self.padre else "+"
-        return "{chevron} {nombre} ({cantidad})".format(chevron=chevron,
-                                                       nombre=self.nombre,
-                                                       cantidad=self.cantidad
-                                                       )
+        marca = " " * self.jerarquia() * (2) + "+" if self.padre else "+"
+        return "{marca} {nombre} ({cantidad})".format(marca=marca,
+                                                      nombre=self.nombre,
+                                                      cantidad=self.cantidad
+                                                      )
