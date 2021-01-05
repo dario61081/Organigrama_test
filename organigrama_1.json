@@ -1,0 +1,41 @@
+{
+  "nombre": "organigrama test",
+  "areas": [
+    {
+      "codigo": 1,
+      "codigo_padre": 0,
+      "nombre": "Gerencia",
+      "cantidad_funcionarios": 3
+    },
+    {
+      "codigo": 6,
+      "codigo_padre": 1,
+      "nombre": "Contabilidad",
+      "cantidad_funcionarios": 10
+    },
+    {
+      "codigo": 8,
+      "codigo_padre": 1,
+      "nombre": "Facturacion",
+      "cantidad_funcionarios": 4
+    },
+    {
+      "codigo": 4,
+      "codigo_padre": 1,
+      "nombre": "Tesoreria",
+      "cantidad_funcionarios": 6
+    },
+    {
+      "codigo": 9,
+      "codigo_padre": 8,
+      "nombre": "Informatica",
+      "cantidad_funcionarios": 4
+    },
+    {
+      "codigo": 2,
+      "codigo_padre": 8,
+      "nombre": "Clientes",
+      "cantidad_funcionarios": 3
+    }
+  ]
+}

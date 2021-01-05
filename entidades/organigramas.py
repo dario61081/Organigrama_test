@@ -2,7 +2,18 @@ __version__ = "1.0"
 __author__ = "Dario Garcia"
 __all__ = ['Organigrama']
 
+import json
+import os
+
 from . import Area
+
+
+class ArchivoInexistente(Exception):
+    """
+    Clase exception personalizado
+    """
+    def __str__(self):
+        return "Archivo no existe"
 
 
 class Organigrama:
@@ -39,3 +50,11 @@ class Organigrama:
             self.nodos.append(nodo)
         else:
             raise Exception("Tipo de nodo invalido")
+
+    def cargar_archivo(self, filename):
+        if not os.path.exists(filename):
+            raise ArchivoInexistente()
+
+        with open(filename, "r") as f:
+            valores = json.loads(f.read())
+
