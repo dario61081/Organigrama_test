@@ -1,0 +1,58 @@
+{
+    "titulo": "organigrama test",
+    "areas": [
+        {
+            "codigo": 1,
+            "nombre": "Gerencia",
+            "cantidad": 3,
+            "areas_hijas": [
+                {
+                    "codigo": 6,
+                    "nombre": "Contabilidad",
+                    "cantidad": 10,
+                    "areas_hijas": []
+                },
+                {
+                    "codigo": 8,
+                    "nombre": "Facturacion",
+                    "cantidad": 4,
+                    "areas_hijas": [
+                        {
+                            "codigo": 9,
+                            "nombre": "Informatica",
+                            "cantidad": 4,
+                            "areas_hijas": []
+                        },
+                        {
+                            "codigo": 2,
+                            "codigo_padre": 8,
+                            "nombre": "Clientes",
+                            "cantidad": 3,
+                            "areas_hijas": []
+                        }
+                    ]
+                },
+                {
+                    "codigo": 4,
+                    "nombre": "Tesoreria",
+                    "cantidad": 6,
+                    "areas_hijas": []
+                }
+            ]
+        }
+    ],
+    "pruebas": [
+        {
+            "codigo_area": 8,
+            "esperado": 11
+        },
+        {
+            "codigo_area": 1,
+            "esperado": 27
+        },
+        {
+            "codigo_area": 4,
+            "esperado": 6
+        }
+    ]
+}

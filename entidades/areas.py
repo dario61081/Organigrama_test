@@ -2,6 +2,8 @@ __version__ = "1.0"
 __author__ = "Dario Garcia"
 __all__ = ["Area"]
 
+from backports.functools_lru_cache import lru_cache
+
 
 class Area:
 
@@ -41,11 +43,11 @@ class Area:
 
         return salto
 
-    def imprimir(self):
+    def imprimir_jerarquia(self):
         print(self)
         if self.areas_hijas:
             for i in self.areas_hijas:
-                i.imprimir()
+                i.imprimir_jerarquia()
 
     def get(self, codigo):
         """
@@ -64,13 +66,31 @@ class Area:
                     if f:
                         # f.imprimir()  # depuracion
                         return f
-            else:
-                return None
+        return None
+
+    @lru_cache(maxsize=10)
+    def get_cantidades_funcionarios(self):
+        """
+        Funcion que retorna la cantidad de funcionarios afectados en la rama
+        """
+        # sumador...
+        suma = 0
+
+        # si hay hijas sumar
+        if self.areas_hijas:
+            for h in self.areas_hijas:
+                suma += h.get_cantidades_funcionarios()
+
+        # sumar del nodo actual
+        suma += self.cantidad
+
+        return suma
 
     def __str__(self):
         marca = " " * self.jerarquia() * 2 + "+" if self.padre else " "
-        return "{marca} {nombre} ({cantidad}) [{codigo}]".format(marca=marca,
-                                                                 nombre=self.nombre,
-                                                                 cantidad=self.cantidad,
-                                                                 codigo=self.codigo
-                                                                 )
+        return "{marca} {nombre} ({cantidad}) [{codigo}]" \
+            .format(marca=marca,
+                    nombre=self.nombre,
+                    cantidad=self.cantidad,
+                    codigo=self.codigo
+                    )
