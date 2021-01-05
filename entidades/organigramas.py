@@ -8,53 +8,23 @@ import os
 from . import Area
 
 
-class ArchivoInexistente(Exception):
-    """
-    Clase exception personalizado
-    """
-    def __str__(self):
-        return "Archivo no existe"
-
-
 class Organigrama:
     """
     Clase para manejo de un organigrama
     """
 
-    def __init__(self, nombre):
+    def __init__(self, titulo, area_inicial):
         """
         Constructor organigrama
         :param nombre: nombre del organigrama
         """
-        self.nombre = nombre
-        self.nodos = []
+        self.titulo = titulo
+        self.area_inicial = area_inicial
 
-    def imprimir(self):
-        """
-        Imprimir organigrama actual
-        :return: None
-        """
+    def imprimir_organigrama(self):
+        print "*** Organigrama {titulo}***".format(titulo=self.titulo)
 
-        print "Organigrama: \"{nombre}\"".format(nombre=self.nombre)
-        for n in self.nodos:
-            print(n)
-        print "*** FIN ***"
+    def get_area(self, codigo):
+        pass
 
-    def add_nodo(self, nodo):
-        """
-        Agregar un nodo al organigrama
-        :param nodo:
-        :return: None
-        """
-        if isinstance(nodo, (Area,)):
-            self.nodos.append(nodo)
-        else:
-            raise Exception("Tipo de nodo invalido")
-
-    def cargar_archivo(self, filename):
-        if not os.path.exists(filename):
-            raise ArchivoInexistente()
-
-        with open(filename, "r") as f:
-            valores = json.loads(f.read())
 
