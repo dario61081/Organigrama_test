@@ -18,10 +18,17 @@ def sumorg(organigrama, codigo_nodo):
 
 
 if __name__ == '__main__':
-    z = Organigrama("Ejemplo 1", Area(1, "GERENCIA", 0))
+    raiz = Area(1, "Gerencia", 3)
+    raiz.agregar_area_hija(Area(6, "Contabilidad", 10))
+    factu = raiz.agregar_area_hija(Area(8, "Facturacion", 4))
+    raiz.agregar_area_hija(Area(4, "Tesoreria", 6))
+
+    factu.agregar_area_hija(Area(9, "Informatica", 4))
+    factu.agregar_area_hija(Area(2, "Clientes", 3))
+
+    z = Organigrama("Ejemplo 1", raiz)
     z.imprimir_organigrama()
 
-    gerencia = z.get_area(0)
 
 
     # print sumorg(z, 8)

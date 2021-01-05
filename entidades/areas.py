@@ -19,27 +19,35 @@ class Area:
         self.padre = None
 
     def agregar_area_hija(self, nueva_area_hija):
+        """
+        Registrar un area hija
+        :param nueva_area_hija: objeto area
+        :return:
+        """
         if not isinstance(nueva_area_hija, (Area,)):
             raise Exception("Nodo a insertar no es valido")
         nueva_area_hija.padre = self
         self.areas_hijas.append(nueva_area_hija)
+        return nueva_area_hija
 
-    def nivel(self):
+    def jerarquia(self):
         salto = 0
         padre = self.padre
         while padre:
             salto += 1
-            padre = self.padre
+            padre = padre.padre
+
         return salto
 
     def imprimir(self):
-        print(self.nombre)
+        print(self)
         if self.areas_hijas:
             for i in self.areas_hijas:
                 i.imprimir()
 
     def __str__(self):
-        return "{codigo}, {nombre}, {cantidad}, {nivel}".format(codigo=self.codigo,
-                                                                nombre=self.nombre,
-                                                                cantidad=self.cantidad,
-                                                                nivel=self.nivel())
+        chevron = " " * self.jerarquia() * (2) + "+" if self.padre else "+"
+        return "{chevron} {nombre} ({cantidad})".format(chevron=chevron,
+                                                       nombre=self.nombre,
+                                                       cantidad=self.cantidad
+                                                       )

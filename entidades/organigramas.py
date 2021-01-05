@@ -23,8 +23,12 @@ class Organigrama:
 
     def imprimir_organigrama(self):
         print "*** Organigrama {titulo}***".format(titulo=self.titulo)
+        self.area_inicial.imprimir()
 
-    def get_area(self, codigo):
-        pass
+    def get_area(self, codigo_area):
+        return
+
+
+
 
 
