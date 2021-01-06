@@ -44,6 +44,10 @@ class Area:
         return salto
 
     def imprimir_jerarquia(self):
+        """
+        Obtener nivel de jerarquia en el arbol
+        :return: (int)
+        """
         print(self)
         if self.areas_hijas:
             for i in self.areas_hijas:

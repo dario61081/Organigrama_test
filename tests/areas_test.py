@@ -55,11 +55,3 @@ class TestAreas(unittest.TestCase):
     def test_cantidad_funcionarios(self):
         cantidad = self.area.get_cantidades_funcionarios()
         self.assertEqual(10, cantidad, msg="Cantidad de funcionario no coincide")
-
-        # agregar nodo y reconteo
-
-        self.area.agregar_area_hija(Area(2, "test a", 2))
-        # self.area.agregar_area_hija(Area(3, "test b", 5))
-
-        cantidad = self.area.get_cantidades_funcionarios()
-        self.assertEqual(25, cantidad, msg="Cantidad de funcionarios no coincide")
