@@ -1,5 +1,7 @@
 __version__ = "1.0"
 __author__ = "Dario Garcia"
+__celular__ = "0985830541"
+__email__ = "dario61081@gmail.com"
 
 from entidades import *
 from funciones.organigrama_funciones import leer_y_cargar_organigrama, sumorg
