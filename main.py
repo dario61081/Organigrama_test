@@ -1,45 +1,29 @@
 __version__ = "1.0"
 __author__ = "Dario Garcia"
 
-import os
-
 from entidades import *
-
-
-def sumorg(organigrama, codigo_nodo):
-    """
-    Funcion para hacer conteo de cantidad de funcionarios por nodos de una jerarquia
-    :return:
-    """
-    if not isinstance(organigrama, (Organigrama,)):
-        raise Exception("El organigrama a procesar no es un objeto valido")
-    if not isinstance(codigo_nodo, (int,)):
-        raise Exception("Codigo de nodo no es numerico")
-
-    r = organigrama.get_area(codigo_nodo)
-    return r.raiz.get_cantidades_funcionarios() or 0
-
+from funciones.organigrama_funciones import leer_y_cargar_organigrama, sumorg
 
 if __name__ == '__main__':
-    # creacion del organigrama
-    # raiz = Area(1, "gerencia", 3)
-    # raiz.agregar_area_hija(Area(6, "contabilidad", 10))
-    #
-    # factu = raiz.agregar_area_hija(Area(8, "facturacion", 4))
-    # factu.agregar_area_hija(Area(9, "Informatica", 4))
-    # factu.agregar_area_hija(Area(2, "Clientes", 3))
-    #
-    # raiz.agregar_area_hija(Area(4, "tesoreria", 6))
+    # ejecutar rutinas de carga y acciones
+    titulo = raw_input("Titulo del organigrama > ")
+    if not titulo:
+        titulo = "Empresa ABC"
 
-    # instanciacion del organigrama
-    filename = os.path.join(os.path.dirname(__file__), 'organigrama.json')
-    z = Organigrama("Ejemplo 1")
-    z.cargar_archivo(filename=filename)
-    # z.raiz = raiz
-    # impresion del organigrama
-    z.imprimir_organigrama()
+    organigrama = leer_y_cargar_organigrama(Organigrama(titulo))
 
-    # resultados...
-    # print sumorg(z, 8)
-    # print sumorg(z, 1)
-    # print sumorg(z, 4)
+    if organigrama:
+        cursor = "{} > "
+        lectura = True
+        while lectura:
+            organigrama.imprimir_organigrama()
+            try:
+                codigo_area = int(raw_input(cursor.format("Codigo del area a ejecutar sumorg(?)| 0: Salir ")))
+                if codigo_area:
+                    if codigo_area == -1:
+                        lectura = False
+                    else:
+                        valor = sumorg(organigrama, codigo_area)
+                        print "{}".format(valor)
+            except Exception as e:
+                print "(!) {}".format(e)

@@ -39,14 +39,27 @@ class TestAreas(unittest.TestCase):
         self.assertEqual(len(self.area.areas_hijas), 1, msg="La cantidad de hijas es distinta a la esperada")
 
     def test_buscador_codigo(self):
-        nuevo_nodo = Area(2, "facail"
-                             "turacion", 3)
-        objeto = self.area.get(2)
-        self.assertIsNotNone(objeto, msg="Area buscado no fue encontrado")
+        # agregar nodos hijas y buscar el segundo
+        self.area.agregar_area_hija(Area(2, "test a", 10))
+        self.area.agregar_area_hija(Area(3, "test b", 5))
+        self.area.agregar_area_hija(Area(4, "test c", 2))
 
-        objeto = self.area.get(3)
-        self.assertIsNotNone(objeto, msg="Area buscada no fue encontrada")
+        objeto_a = self.area.get(2)  # cargado previamente
+        self.assertIsNotNone(objeto_a, msg="Area 2 buscado no fue encontrado")
+        self.assertEqual(objeto_a.codigo, 2, msg="Codigo del area no es igual")
+
+        objeto_b = self.area.get(4)
+        self.assertIsNotNone(objeto_b, msg="Area 4 buscada no fue encontrada")
+        self.assertEqual(objeto_b.codigo, 4, msg="Codigo del area no es igual")
 
     def test_cantidad_funcionarios(self):
         cantidad = self.area.get_cantidades_funcionarios()
-        self.assertEqual(cantidad, 10, msg="Cantidad de funcionario no coincide")
+        self.assertEqual(10, cantidad, msg="Cantidad de funcionario no coincide")
+
+        # agregar nodo y reconteo
+
+        self.area.agregar_area_hija(Area(2, "test a", 2))
+        # self.area.agregar_area_hija(Area(3, "test b", 5))
+
+        cantidad = self.area.get_cantidades_funcionarios()
+        self.assertEqual(25, cantidad, msg="Cantidad de funcionarios no coincide")

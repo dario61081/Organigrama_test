@@ -34,7 +34,7 @@ class Area:
 
         return nueva_area_hija
 
-    def jerarquia(self):
+    def nivel_jerarquia(self):
         salto = 0
         padre = self.padre
         while padre:
@@ -49,6 +49,7 @@ class Area:
             for i in self.areas_hijas:
                 i.imprimir_jerarquia()
 
+    @lru_cache(maxsize=100)
     def get(self, codigo):
         """
         Obtener el area instanciada usando su codigo
@@ -75,22 +76,44 @@ class Area:
         """
         # sumador...
         suma = 0
+        # sumar del nodo actual
+        suma += self.cantidad
 
         # si hay hijas sumar
         if self.areas_hijas:
             for h in self.areas_hijas:
                 suma += h.get_cantidades_funcionarios()
 
-        # sumar del nodo actual
-        suma += self.cantidad
-
         return suma
 
     def __str__(self):
-        marca = " " * self.jerarquia() * 2 + "+" if self.padre else " "
-        return "{marca} {nombre} ({cantidad}) [{codigo}]" \
+        marca = " " * self.nivel_jerarquia() * 2 + "+" if self.padre else " "
+        return "{marca} [{codigo}] {nombre} ({cantidad}) " \
             .format(marca=marca,
                     nombre=self.nombre,
                     cantidad=self.cantidad,
                     codigo=self.codigo
                     )
+
+    @lru_cache(maxsize=10)
+    def borrar_area(self, codigo):
+        if self.areas_hijas:
+            for h in self.areas_hijas:
+                if h.codigo == codigo:
+                    del h
+                    return True
+                else:
+                    h.borrar_area(codigo)
+
+        if self.nivel_jerarquia() == 0:
+            return False
+
+    @lru_cache(maxsize=100)
+    def sumorg(self, codigo_padre):
+        suma = 0
+        if self.areas_hijas:
+            for h in self.areas_hijas:
+                suma += h.sumorg(codigo_padre)
+
+        suma += self.cantidad
+        return suma
